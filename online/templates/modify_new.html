@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
+        <title>银翼云盘</title>
+        <meta name="author" content="chenpengjiang" />
+        <link rel="shortcut icon" href="../favicon.ico">
+        <link rel="stylesheet" type="text/css" href="/static/css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/style2.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/animate-custom.css" />
+    </head>
+    <body>
+    {% if user_pass %}
+    <script language="JavaScript">document.location = "#toregister"</script>
+    {% endif %}
+        <div class="container">
+            <header>
+                <h1>修改用户 <span>密码</span></h1>
+
+            </header>
+            <section>
+                <div id="container_demo" >
+                    <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+                            <form  action='' method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <h1>修改密码</h1>
+                                <p>
+                                    <label for="username" class="uname" data-icon="u" > 用户名： </label>
+                                    <input id="id_username" maxlength="100" name="username" type="text" required="required" placeholder="请输入需要修改密码的用户名"/>
+                                    <label style="color: red;">{{ error }}</label></p>
+                                </p>
+
+                                <p class="login button">
+                                    <input type="submit" value="确定" />
+								</p>
+                                 <p class="change_link">
+									点错了？
+									<a href="http://127.0.0.1:8000/online/login/" class="to_register"> 返回登陆 </a>
+								</p>
+                            </form>
+                        </div>
+
+                        <div id="register" class="animate form">
+                            {% if message %}<label style="color: red;">
+                             <ul>
+                                 {% for error in message %}
+                                 <li>{{ error }}</li>
+                                 {% endfor %}
+                             </ul></label>
+                            {% endif %}
+                            <form  action="" method="post">
+                                {% csrf_token %}
+                                <h1> 确认信息 </h1>
+                                <p>
+                                    <label for="usernamesignup" class="uname" data-icon="u">验证码 </label>
+                                    <input id="id_validate" name="validate" required="required" type="text" placeholder="输入验证码" />
+                                    <label style="color: red;">{% for error in errors1 %}{{ error }}{% endfor %}</label></p>
+                                </p>
+                                <p>
+                                    <label for="passwordsignup" class="youpasswd" data-icon="p">新密码 </label>
+                                    <input id="id_newpasswd" name="newpasswd" required="required" type="password" placeholder="输入新密码"/>
+                                </p>
+                                <p>
+                                    <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">确定密码 </label>
+                                    <input id="passwordsignup_confirm" name="newpasswd_c" required="required" type="password" placeholder="确认密码"/>
+                                </p>
+                                <p class="signin button">
+									<input type="submit" value="确认"/>
+								</p>
+                                <p class="change_link">
+									已经有账号了？
+									<a href="/online/login/" class="to_register"> 返回登陆 </a>
+								</p>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+			<div style="text-align:center;clear:both">
+<br>
+                <p>请到邮箱检查验证码</p><br>
+<p>南京晓庄学院  12软件工程2班  希优大赛</p><br>
+</div>
+        </div>
+    </body>
+</html>

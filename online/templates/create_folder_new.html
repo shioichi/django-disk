@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
+        <title>银翼云盘</title>
+        <meta name="author" content="chenpengjiang" />
+        <link rel="shortcut icon" href="../favicon.ico">
+        <link rel="stylesheet" type="text/css" href="/static/css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/style2.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/animate-custom.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="/static/css/filestyles.css" />
+    </head>
+    <body>
+    {% if up_files %}
+    <script language="JavaScript">document.location = "#toregister"</script>
+    {% endif %}
+        <div class="container">
+            <header>
+                <h1>文件 <span>操作</span></h1>
+
+            </header>
+            <section>
+                <div id="container_demo" >
+                    <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+                            <form  action='' method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <h1>新建文件夹</h1>
+                                <p>
+                                    <label for="username" class="uname" data-icon="u" > 文件夹名称： </label>
+                                    <input id="foldername" maxlength="100" name="folder_name" type="text" required="required" placeholder="请输入新的文件夹名称"/>
+                                </p>
+                                 <p>
+                                    <label for="username" class="uname" data-icon="u" > 描述： </label>
+                                    <input id="description" maxlength="100" name="description" type="text" required="required" placeholder="描述内容"/>
+                                </p>
+                                <p class="login button">
+                                    <input type="submit" value="确定" />
+								</p>
+                            </form>
+                        </div>
+
+                        <div id="register" class="animate form">
+                            <form action="/online/upload/" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <h1> 上传文件 </h1>
+                                <p>
+                                    <label for="usernamesignup" class="uname" data-icon="u">文件名： </label>
+                                    <input id="id_file_name" name="file_name" required="required" type="text" placeholder="输入文件名" />
+                                </p>
+                                <fieldset>
+                                    <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
+                                <p>
+                                    <label for="passwordsignup" class="youpasswd" data-icon="p" >选择文件(或拖拽进下框）： </label>
+                                    <input id="id_file_loc" name="file_loc" required="required" type="file" multiple="multiple"/>
+                                    <div id="filedrag">or drop files here</div>
+                                </p>
+                                </fieldset>
+                                <p class="signin button">
+									<input type="submit" value="确认"/>
+								</p>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+			<div style="text-align:center;clear:both">
+<br>
+
+<p>南京晓庄学院  12软件工程2班  希优大赛</p><br>
+</div>
+        </div>
+    </body>
+</html>

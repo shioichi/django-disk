@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <link rel="stylesheet" href="/static/css/folder_info.css">
+    <script src="/static/js/jquery-2.1.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#show_name").click(function(){
+                $("#f1").toggle();
+            });
+            $("#show_des").click(function(){
+                $("#f2").toggle();
+            });
+
+        });
+
+
+    </script>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1>文件夹信息</h1>
+{#文件夹名称：{{ fi.folder_name }}  <button id="show_name">修改名称</button> <br>#}
+
+{#描述：{{ fi.description }}  <button id="show_des">修改描述</button> <br>#}
+
+
+    <table class="bordered">
+        <thead>
+        <tr>
+            <td>文件夹名称</td><td>创建时间</td><td>修改时间</td><td>描述</td>
+        </tr>
+        </thead>
+        <tr>
+            <td>{{ fi.folder_name }}<button class="myButton" id="show_name">修改名称</button></td><td>{{ fi.create_time }}</td><td>{{ fi.modify_time }}</td><td>{{ fi.description }}<button class="myButton" id="show_des">修改描述</button></td>
+        </tr>
+    </table>
+         <div id='f1' style="display: none;">
+            <form action='' method="post">
+            {% csrf_token %}
+            <input name="folder_rename" required="true" class="input-text">
+            <button type="submit" class="myButton" >确认修改</button>
+            </form>
+         </div>
+        <div id="f2" style="display: none;">
+            <form id='f1'action='' method="post">
+            {% csrf_token %}
+            <input name="description" required="true" class="input-text">
+            <button type="submit" class="myButton">确认修改</button>
+            </form>
+        </div>
+
+        <p id="back"><a href="/online/index/" class="to_register"> 返回主页面 </a></p>
+
+
+</body>
+</html>
